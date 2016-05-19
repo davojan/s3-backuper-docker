@@ -1,4 +1,4 @@
-FROM davojan/s3-backuper:latest
+FROM davojan/s3-backuper:0.0.1
 
 ARG aws_id
 ARG aws_secret
