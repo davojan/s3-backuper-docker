@@ -1,30 +1,30 @@
 #!/usr/bin/env python
 
 import sys
-from plumbum.cmd import mkdir, cat, ls
-from plumbum import local, cli, colors
+from plumbum.cmd import mkdir, cat
+from plumbum import cli
 
 
 class MyApp(cli.Application):
-    PROGNAME = colors.green
+
     VERSION = "0.0.1"
 
     verbose = cli.Flag(["v", "verbose"], help = "If given, I will be very talkative")
 
-    def main(self):
+    def main(self, awsId, awsSecret, awsRegion):
         mkdir("-p", "~/.aws")
         # save aws credentials
-        credentials = awsCredentials(key = local.env["AWS_ID"], secret = local.env["AWS_SECRET"])
+        credentials = awsCredentials(id = awsId, secret = awsSecret)
         ((cat << credentials) > "~/.aws/credentials")()
         # save aws region config
-        config = awsConfig(region = local.env["AWS_REGION"])
+        config = awsConfig(region = awsRegion)
         ((cat << config) > "~/.aws/config")()
 
 
-def awsCredentials(key, secret):
+def awsCredentials(id, secret):
     return '''[default]
 aws_access_key_id=%s
-aws_secret_access_key=%s''' % (key, secret)
+aws_secret_access_key=%s''' % (id, secret)
 
 def awsConfig(region):
     return '''[default]
