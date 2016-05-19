@@ -5,6 +5,8 @@ from plumbum.cmd import mkdir, cat
 from plumbum import cli
 
 
+CONFIG_DIR = "/root/.aws"
+
 class MyApp(cli.Application):
 
     VERSION = "0.0.1"
@@ -12,13 +14,13 @@ class MyApp(cli.Application):
     verbose = cli.Flag(["v", "verbose"], help = "If given, I will be very talkative")
 
     def main(self, awsId, awsSecret, awsRegion):
-        mkdir("-p", "~/.aws")
+        mkdir("-p", CONFIG_DIR)
         # save aws credentials
         credentials = awsCredentials(id = awsId, secret = awsSecret)
-        ((cat << credentials) > "~/.aws/credentials")()
+        ((cat << credentials) > CONFIG_DIR + "/credentials")()
         # save aws region config
         config = awsConfig(region = awsRegion)
-        ((cat << config) > "~/.aws/config")()
+        ((cat << config) > CONFIG_DIR + "/config")()
 
 
 def awsCredentials(id, secret):
