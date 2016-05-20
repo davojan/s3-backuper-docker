@@ -1,14 +1,7 @@
-FROM python:3.5-alpine
+FROM davojan/plumbum:latest
 
 MAINTAINER davojan
 
-RUN pip install --upgrade pip
-
-RUN pip install awscli plumbum
-
-COPY *.py /root/
-
-RUN chmod a+x /root/*.py && \
-    python -OO -m compileall -l /root/
+RUN pip install awscli
 
 ENTRYPOINT ["/root/s3-backuper.py"]
