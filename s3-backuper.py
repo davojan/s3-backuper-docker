@@ -15,8 +15,8 @@ class MyApp(cli.Application):
 
     VERSION = "0.0.1"
 
-    verbose = cli.Flag(["v", "verbose"], help = "If given, I will be very talkative")
-    keepCount = cli.SwitchAttr(["k", "keep"], int, default = 2, help = "Max count of backup files to be kept")
+    verbose = cli.Flag(["v", "verbose"], help = "Verbose output")
+    keepCount = cli.SwitchAttr(["k", "keep"], int, default = 10, help = "Max count of backup files to be kept")
 
     def main(self, srcDir, dstBucket, dstDir):
         # protect to prevent deleting of all backups
