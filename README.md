@@ -21,7 +21,7 @@ docker build -t foo/s3-backuper --build-arg aws_id='your-aws-id' --build-arg aws
 
 You can replace ``foo/s3-backuper`` with any valid docker image tag. This image is created locally on your docker host and should never be shared because it contains your credentials.
 
-Now you can call the backuper script. Let's assume you have a running docker container named 'my-service' which periodically creates backup files in volume '/data/backups/'. You can create a cron job with command:
+Now you can call the backuper script. Let's assume you have a running docker container named ``my-service`` which periodically creates backup files in volume ``/data/backups/``. You can create a cron job with command:
 
 ```bash
 docker run --rm --volumes-from my-service foo/s3-backuper /data/backups/ s3.bucket.name s3/folder/my-service --keep 5
