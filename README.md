@@ -5,7 +5,7 @@ Simple S3 Backup Synchronizer. Manages local backup folder with configurable max
 To show script help:
 
 ```bash
-docker run --rm davojan/s3-backuper --help
+docker run --rm procraft/s3-backuper --help
 ```
 
 ## Usage
@@ -15,7 +15,7 @@ Before you can use the backup script you should create your own derived docker i
 ```bash
 mkdir -p path/to/some/dir
 cd path/to/some/dir
-wget https://raw.githubusercontent.com/davojan/s3-backuper-docker/master/configured-image/Dockerfile
+wget https://raw.githubusercontent.com/procraft/s3-backuper-docker/master/configured-image/Dockerfile
 docker build -t foo/s3-backuper --build-arg aws_id='your-aws-id' --build-arg aws_secret='your-aws-secret' --build-arg aws_region='us-west-2' .
 ```
 
