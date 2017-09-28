@@ -1,4 +1,4 @@
-FROM davojan/s3-backuper:0.0.1
+FROM procraft/s3-backuper:latest
 
 ARG aws_id
 ARG aws_secret
